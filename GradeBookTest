@@ -1,0 +1,52 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+class GradeBookTest {
+	
+	GradeBook one;
+	GradeBook two;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		 one = new GradeBook(5);
+		 two = new GradeBook(5);
+		
+		one.addScore(10);
+		one.addScore(9);
+		two.addScore(8);
+		two.addScore(7);
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		one = null;
+		two = null;
+	}
+
+	@Test
+	void addScore() {
+		assertTrue(one.toString().equals("10.0 9.0 0.0 0.0 0.0 "));
+		assertTrue(two.toString().equals("8.0 7.0 0.0 0.0 0.0 "));
+		assertEquals(one.getScoresSize(), 2 );
+		assertEquals(two.getScoresSize(), 2);
+	}
+	@Test
+	void sum() {
+		assertTrue(one.sum() == (19.0));
+		assertTrue(two.sum() == (15.0));
+		
+	}
+	@Test
+	void minimum() {
+		assertTrue(one.minimum() == (9.0));
+		assertTrue(two.minimum() == (7.0));
+	}
+	@Test
+	void finalScore() {
+		assertTrue(one.finalScore() == (10.0));
+		assertTrue(two.finalScore() == (8.0));
+	}
+
+}
